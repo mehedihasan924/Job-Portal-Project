@@ -37,17 +37,15 @@ const [selectedCategory, setSelectedCategoey]=useState(null)
 const [jobs , setJobs]=useState([])
   useEffect(()=>{
     setIsloading(true);
-    fetch("http://localhost:3000/all-jobs")
+    fetch("http://localhost:3000/myjobs/mdhasanmehedi924@gmail.com")
     .then(res=>res.json())
     .then(data=>{setJobs(data)
       setIsloading(false)
     }   
     )
   }, [])
-
 // filter jobs by title
 const filterItems=jobs.filter((job)=> job.jobTitle.toLowerCase().indexOf(query.toLowerCase())!==-1)
-
 
 //====Redio Filtering===
 const haldleChange=(event)=>{
@@ -72,6 +70,7 @@ const calculatePageRange=()=>{
    const endIndex=startIndex + itemsParPage;
    return {startIndex, endIndex}
 }
+
 // categories filtering 
     if(selected){
       filteredJobs= filteredJobs.filter(({ jobLocation,postingDate, experienceLevel,employmentType,salaryType,maxPrice})=> 
@@ -128,7 +127,6 @@ const calculatePageRange=()=>{
               </div>
             ): ""
           }
-
          </div>  
 
          {/* Right side */}

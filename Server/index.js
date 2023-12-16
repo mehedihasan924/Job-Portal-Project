@@ -14,7 +14,7 @@ const port = process.env.PORT||3000;
 //pass:job-admin
 
 //Daabase
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@mern-job-portal.8rrtpe2.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -35,6 +35,9 @@ async function run() {
      const db=client.db("marnjobportal")
      const jobsCollection=db.collection("demojobs");
 
+
+
+     
     // post a jobs 
     app.post("/post-job", async(req, res)=>{
       const body=req.body;
@@ -58,11 +61,23 @@ async function run() {
        const jobs=await jobsCollection.find({}).toArray()
         res.send(jobs);
     })
+
     // get jobs by email
     app.get("/myjobs/:email", async(req, res)=>{
       const jobs=await jobsCollection.find({postedBy:req.params.email}).toArray();
       res.send(jobs);
+      console.log(req.params.email);
     })
+
+  //delete a jobs
+ app.delete("/job/:id", async(req, res)=>{
+    const id=req.params.id;
+    const filter={_id: new ObjectId(id)}
+    const result=await jobsCollection.deleteOne(filter);
+    res.send(result);
+ })
+
+
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

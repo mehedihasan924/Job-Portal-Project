@@ -5,25 +5,23 @@ import { useCountdown } from './useCountdown';
 import Timer from './Timer';
 const Banner = ({query ,handleInputChange}) => {
 
-    const THREE_DAYS_IN_MS = 14 * 24 * 60 * 60 * 1000;
-    const NOW_IN_MS = new Date().getTime();
-    const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
+    // const THREE_DAYS_IN_MS = 14 * 24 * 60 * 60 * 1000;
+    // const NOW_IN_MS = new Date().getTime();
+    // const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
   
-    const [days, hours, minutes, seconds] = useCountdown(dateTimeAfterThreeDays);
+    // const [days, hours, minutes, seconds] = useCountdown(dateTimeAfterThreeDays);
 
   return (
     <div className='max-w-screen-lg container mx-auto xl:px-24 px-4 md:py-20 py-14'>
         <h1 className='text-5xl text-black font-bold mb-3 '> Find your <span className='text-primary'>new jobs </span> today </h1>
         <p> Thousands of jobs in the computer engineering technology sectors are waiting for you.</p>
         {/* Timer */}
-        <div className="flex space-x-2 md:space-x-7">
+        {/* <div className="flex space-x-2 md:space-x-7">
           <Timer value={days} name="Days" />
           <Timer value={hours} name="Hours" />
           <Timer value={minutes} name="Minutes" />
           <Timer value={seconds} name="Seconds" />
-        </div>
-
-
+        </div> */}
         <form> 
             <div className='flex justify-start  md:flex-row  flex-col  md:gap-0 gap-4'>
                 <div className='flex md:rounded-s-md rounded  shadow-sm fing-1 ring-inset ring-gray-300 focus-withing:ring-2 focus-withing:ring-inset focus-withing:ring-indigo-600 md:w-1/2 w-full'>

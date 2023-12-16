@@ -23,9 +23,13 @@ const Creatjob = () => {
         .then((result)=>{
             console.log(result);
             if(result.acknowledged===true){
-                alert(" Job Posted Successfully !")
+                Swal.fire({
+                    title: "Successfully Posted job!",
+                    text: "You clicked the button!",
+                    icon: "success"
+                  });
             }
-            reset(data.skills)
+            reset();
         });
     }
 
@@ -115,10 +119,10 @@ const Creatjob = () => {
                  </div>
 
                {/* 6th Row */}
-               <div className='flex  flex-col lg:flex-row  items-center justify-between  after:gap-8'>
+               <div className='flex  flex-col lg:flex-row  items-center justify-between gap-8'>
                     <div className='lg:w-1/2 w-full '>
                             <label className=' block mb-2 text-lg'>Company Logo</label>
-                            <input type="url" placeholder="Upload Logo" {...register("companyLogo", )} className='block border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:text-sm sm:leading-6 '/>   
+                            <input type="url" placeholder="Upload Logo" {...register("companyLogo", )} className='block w-full border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 '/>   
                         </div>
                        <div className='lg:w-1/2 w-full '>
                          <label className=' block mb-2 text-lg'>Employment Type </label>
