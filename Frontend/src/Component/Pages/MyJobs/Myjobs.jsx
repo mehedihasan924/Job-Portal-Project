@@ -17,12 +17,36 @@ const Myjobs = () => {
         });
 
     },[searchText])
+     
+     // pagination
+    const [currentPage,setCurrentPage]=useState(1);
+    const itemsPerpage=4;
+
+     const indexOfLastItem=currentPage*itemsPerpage;
+     const indexOfFirsttItem=indexOfLastItem- itemsPerpage;
+     const currentJobs=jobs.slice(indexOfFirsttItem, indexOfLastItem);
+
+
+    // next btn and previous btn
+    const nextPage=()=>{
+      if(indexOfLastItem<jobs.length){
+        setCurrentPage(currentPage+1)
+      }
+    }
+    const previousPage=()=>{
+      if(currentPage>1){
+        setCurrentPage(currentPage-1)
+      } 
+    }
+
 
     const handleSearch=()=>{
-        const filter=jobs.filter((job)=> job.jobTitle.toLowerCase().indexOf(query.toLowerCase())!==-1)
-      setJobs(filter);
-      setIsleoading(false) 
+        const filter=jobs.filter((job)=> job.jobTitle.toLowerCase().indexOf(searchText.toLowerCase())!==-1)
+        setJobs(filter);
+        setIsleoading(false); 
     }
+
+
 
 
     const handlDelete=(id)=>{
@@ -48,6 +72,7 @@ const Myjobs = () => {
                 <h1 className='text-center p-4'>My Jobs: {jobs.length}</h1>
                 <div className='search-box text-center p-2 mb-2'>
                     <input
+
                     onChange={(e)=>setSearchText(e.target.value)}
                     type="text" name="search"  id="search" className='py-2 pl-3 border focus:outline-none lg:w-6/12 mb-4 w-full'/>
                     <button onClick={handleSearch} className='bg-blue text-white font-semibold px-8 py-2 rounded-sm mb-4 '> Search</button>
@@ -100,7 +125,7 @@ const Myjobs = () => {
                       ( 
                         <tbody>
                         {
-                            jobs.map(( job, index)=>( 
+                            currentJobs.map(( job, index)=>( 
                               <tr key={index}>
                             <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
                               {index+1}
@@ -132,6 +157,19 @@ const Myjobs = () => {
               </div>
             </div>
           </div>
+             <div className='flex justify-center text-black space-x-8'>
+                {
+                  currentPage> 1 &&( 
+                    <button onClick={previousPage} className='hover:underline'> Previous</button>
+                  )
+                }
+                {
+                  indexOfLastItem < jobs.length &&( 
+                    <button onClick={nextPage} className='hover:underline'>Next</button>
+                  )
+                }
+            </div>  
+
           <footer className="relative pt-8 pb-6 mt-16">
             <div className="container mx-auto px-4">
               <div className="flex flex-wrap items-center md:justify-between justify-center">

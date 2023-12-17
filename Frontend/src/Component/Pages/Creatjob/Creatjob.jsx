@@ -110,7 +110,7 @@ const Creatjob = () => {
                  <div>
                    <label className=' block mb-2 text-lg'>Required Skill Sets: </label>
                     <CreatableSelect
-                    defaultValue={selettedOption}            
+                    // defaultValue={selettedOption}            
                     onChange={setSelectedOption}
                     options={options}
                     isMulti
@@ -139,7 +139,7 @@ const Creatjob = () => {
                  <div className='w-full'>
                   <label className=' block mb-2 text-lg'>Job Description: </label>
                   <textarea  
-                  defaultValue={"A book or other written or printed work, regarded in terms of its content rather than its physical form." } 
+                //   defaultValue={"A book or other written or printed work, regarded in terms of its content rather than its physical form." } 
                   className='w-full pl-3 py-1.5 focus:outline-none'
                   rows={6}
                   placeholder='Job Description'
