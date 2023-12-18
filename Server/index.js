@@ -61,6 +61,15 @@ async function run() {
        const jobs=await jobsCollection.find({}).toArray()
         res.send(jobs);
     })
+    //get single job using id
+    app.get("/all-jobs/:id", async(req, res)=>{
+       const id=req.params.id;
+       const job= await jobsCollection.findOne({
+        _id:new ObjectId(id)
+       })
+       res.send(job);
+    })
+
 
     // get jobs by email
     app.get("/myjobs/:email", async(req, res)=>{
@@ -76,6 +85,24 @@ async function run() {
     const result=await jobsCollection.deleteOne(filter);
     res.send(result);
  })
+
+//Update Jobs
+app.patch("/update-job/:id", async(req, res)=>{
+  const id=req.params.id;
+  const jobDate=req.body;
+  const filter={_id:new ObjectId(id)};
+  const options={ upsert :true };
+  const updateDoc={
+    $set:{
+      ...jobDate
+    },
+  };
+  const result= await jobsCollection.updateOne(filter, updateDoc, options);
+
+})
+
+
+
 
 
 

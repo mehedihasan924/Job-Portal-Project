@@ -5,7 +5,7 @@ import './App.css'
 import { Outlet } from 'react-router-dom'
 import Navbar from './Component/Pages/Navbar/Navbar'
 import Footer from './Component/Pages/Footer/Footer'
-
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
 function App() {
 
 
@@ -13,6 +13,17 @@ function App() {
     <>
     <Navbar></Navbar>
        <Outlet></Outlet>
+          {/* Whatsapp button */}
+          <div className="App">
+              <FloatingWhatsApp
+                phoneNumber="01954311300"
+                accountName="Mehedi Hasan "
+                allowEsc
+                allowClickAway
+                notification
+                notificationSound
+              />
+            </div>
     <Footer></Footer>
     </>
   )

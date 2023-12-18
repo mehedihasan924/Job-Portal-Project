@@ -5,7 +5,7 @@ import { Card } from '../../Card/Card';
 import Jobs from '../Jobs/Jobs';
 import Sidebar from '../../Sidebar/Sidebar';
 import NewsLetter from '../../NeswLetter/NewsLetter';
-import { FloatingWhatsApp } from 'react-floating-whatsapp'
+
 
 
 const Home = () => {
@@ -133,19 +133,8 @@ const calculatePageRange=()=>{
 
          {/* Right side */}
         <div className='rounded p-4 bg-white'>
-        <NewsLetter/>
-        {/* Whatsapp button */}
-        <div className="App">
-            <FloatingWhatsApp
-              phoneNumber="01954311300"
-              accountName="Mehedi Hasan "
-              allowEsc
-              allowClickAway
-              notification
-              notificationSound
-            />
-    </div>
-           </div>
+              <NewsLetter/>      
+         </div>
       </div>
 
     </div>

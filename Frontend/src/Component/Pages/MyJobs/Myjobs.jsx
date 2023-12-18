@@ -140,10 +140,11 @@ const Myjobs = () => {
                             ${job.minPrice}-${job.maxPrice}
                             </td>
                             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">                    
-                              <button ><Link to={`/edit-job/${job?._id}`}>Edit </Link> </button>
+                            <Link to={`/edit-job/${job?._id}`}><button className='bg-green-500 rounded-sm py-2 px-8 text-white' >Edit  </button></Link>
                             </td>
                             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                               <button onClick={()=>handlDelete(job._id)} className='bg-red-700 rounded-sm py-2 px-6 text-white'> Delete </button>
+                              
                             </td>
                               </tr>
                             ))
