@@ -1,82 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Myjobs = () => {
-  
-    const [jobs, setJobs]=useState([]);
-    const [searchText, setSearchText]=useState("");
-    const [isloading, setIsleoading]=useState(true);
+const Applyedjob = () => {
+    // const [jobs, setJobs]=useState([]);
+    // const [isloading, setIsleoading]=useState(true);
+    // useEffect(()=>{ 
+    //     setIsleoading(true);    
+    //     fetch(`http://localhost:3000/applyedjob/${id}`)
+    //     .then(res=>res.json())
+    //     .then((data)=>{
+    //       setJobs(data);
+    //       setIsleoading(false);      
+    //     });
+    // },[])
 
-    useEffect(()=>{
-        setIsleoading(true);
-        fetch(`http://localhost:3000/myjobs/mdhasanmehedi924@gmail.com`)
-        .then(res=>res.json())
-        .then((data)=>{
-          setJobs(data);
-          setIsleoading(false);
-        });
-    },[searchText])
-     
-     // pagination
-    const [currentPage,setCurrentPage]=useState(1);
-    const itemsPerpage=4;
-
-     const indexOfLastItem=currentPage*itemsPerpage;
-     const indexOfFirsttItem=indexOfLastItem- itemsPerpage;
-     const currentJobs=jobs.slice(indexOfFirsttItem, indexOfLastItem);
-
-
-    // next btn and previous btn
-    const nextPage=()=>{
-      if(indexOfLastItem<jobs.length){
-        setCurrentPage(currentPage+1)
-      }
-    }
-    const previousPage=()=>{
-      if(currentPage>1){
-        setCurrentPage(currentPage-1)
-      } 
-    }
-
-
-    const handleSearch=()=>{
-        const filter=jobs.filter((job)=> job.jobTitle.toLowerCase().indexOf(searchText.toLowerCase())!==-1)
-        setJobs(filter);
-        setIsleoading(false); 
-    }
-
-    const handlDelete=(id)=>{
-      console.log(id);
-      fetch(`http://localhost:3000/job/${id}`, {
-        method:"DELETE"
-      })
-      .then(res=>res.json())
-      .then(data=> {
-        if(data.acknowledged===true){
-          Swal.fire({
-            title: "Successfully deleted job!",
-            text: "You clicked the button!",
-            icon: "success"
-          });
-            reset()
-        }
-      });
-    }
-
+    // const handlDelete=(id)=>{
+    //     console.log(id);
+    //     fetch(`http://localhost:3000/applyed/${id}`, {
+    //       method:"DELETE"
+    //     })
+    //     .then(res=>res.json())
+    //     .then(data=> {
+    //       if(data.acknowledged===true){
+    //         Swal.fire({
+    //           title: "Successfully deleted job!",
+    //           text: "You clicked the button!",
+    //           icon: "success"
+    //         });
+    //           reset()
+    //       }
+    //     });
+    //   }
     return (
-        <div className='max-w-screen-2xl container mx-auto xl:px-5 px-[10px]'>         
-                <div className='search-box py-5 flex flex-row-1 items-center justify-between gap-5 '>
-                  <h1 className='text-xl p-4'>Total Jobs Posted: {jobs.length}</h1>
-                  <div className=''> 
-                    <input
-                      onChange={(e)=>setSearchText(e.target.value)}
-                      type="text" name="search"  id="search" className='py-2  border focus:outline-none lg:w-6/12 mb-4 w-full'/>
-                      <button onClick={handleSearch} className='bg-blue text-white font-semibold px-8 py-2 rounded-sm mb-4 '> Search</button>
-                  </div>           
-            </div>            
-            {/* table */}
-            <section className="py-3 bg-blueGray-50">
-          <div className="w-full  xl:mb-0 px-4 mx-auto ">
+        <div>
+         {/* <section className="py-3 bg-blueGray-50">
+          <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto ">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
               <div className="rounded-t mb-0 px-4 py-3 border-0">
                 <div className="flex flex-wrap items-center">
@@ -154,19 +112,6 @@ const Myjobs = () => {
               </div>
             </div>
           </div>
-             <div className='flex justify-center text-black space-x-8'>
-                {
-                  currentPage> 1 &&( 
-                    <button onClick={previousPage} className='hover:underline'> Previous</button>
-                  )
-                }
-                {
-                  indexOfLastItem < jobs.length &&( 
-                    <button onClick={nextPage} className='hover:underline'>Next</button>
-                  )
-                }
-            </div>  
-
           <footer className="relative pt-8 pb-6 mt-16">
             <div className="container mx-auto px-4">
               <div className="flex flex-wrap items-center md:justify-between justify-center">
@@ -178,9 +123,9 @@ const Myjobs = () => {
               </div>
             </div>
           </footer>
-          </section>
+          </section> */}
         </div>
     );
 };
 
-export default Myjobs;
+export default Applyedjob;

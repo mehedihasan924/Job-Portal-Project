@@ -50,8 +50,7 @@ async function run() {
       else{
         return res.status(404).send({
           message: "Can not insert ! try again later ",
-          status:false
-          
+          status:false         
         })
       }
     })
@@ -86,6 +85,9 @@ async function run() {
     res.send(result);
  })
 
+
+   
+
 //Update Jobs
 app.patch("/update-job/:id", async(req, res)=>{
   const id=req.params.id;
@@ -98,7 +100,6 @@ app.patch("/update-job/:id", async(req, res)=>{
     },
   };
   const result= await jobsCollection.updateOne(filter, updateDoc, options);
-
 })
 
 

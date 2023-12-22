@@ -12,7 +12,7 @@ const Navbar = () => {
     .then(()=>{})
     .catch(error=>console.error(error))
 }
-
+ console.log(user);
   const [isMenuOpen, setIsMenuOpen]=useState();
   const hanldleMenu=()=>{
     setIsMenuOpen(!isMenuOpen)
@@ -24,17 +24,14 @@ const Navbar = () => {
       title: "Start a sreach"
     },
     {
-      path:"/myjobs",
-      title: "My Jobs"
+      path:"/applyedjob",
+      title: "Applyed"
     },
     {
       path:"/salary",
       title: "Salary Estimate"
     },
-    {
-      path:"/post-job",
-      title: "Post a job"
-    }
+   
   ]
   return (
     <header className='max-w-screen-2xl container mx-auto xl:px-24 px-4'> 
@@ -94,7 +91,8 @@ const Navbar = () => {
               ))}
               <div className='flex gap-2 items-center'>
               { 
-                user && <FaUserCircle style={{fontSize: "2rem"}}/>
+                user ? <img style={{borderRadius:"50%", height: "40px ", width:"40px"}} src={user.photoURL}  alt="" /> :
+                <FaUserCircle style={{fontSize: "2rem"}}/>
               }                     
               {
                 user ?  <Link to="/register"> <button onClick={handleLogOut}  className="btn btn-active btn-primary">Logout</button></Link>:

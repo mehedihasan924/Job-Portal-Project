@@ -6,7 +6,7 @@ import  useTitle from '../../hooks/useTitle'
 import { FcGoogle } from "react-icons/fc";
 
 const Login =() => {
-  
+
     const {signIn, signWithGoogle}=useContext(AuthContext)
     const navigate=useNavigate()
     const location=useLocation()
@@ -86,3 +86,7 @@ const Login =() => {
 }
 
 export default Login;
+
+
+
+

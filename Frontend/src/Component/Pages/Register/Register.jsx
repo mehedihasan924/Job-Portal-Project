@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../Provaider/AuthProvaiders';
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
@@ -10,6 +10,16 @@ const Register = () => {
      const navigate=useNavigate()
      useTitle("Register")
 
+       // Error massage show korar jonno
+   const [error, setError]=useState('')
+   const [email, setemail]=useState('')
+   const [success, setSuccess]=useState('')
+  // Input field data show system 
+  const handleEmailChange=(event)=>{
+    console.log(event.target.value);
+    setemail(event.target.value);
+  }
+
        const handleRegisfrom=(event)=>{ 
            event.preventDefault();
            const from=event.target;
@@ -18,13 +28,32 @@ const Register = () => {
            const password= from.password.value;
            console.log(email, name, password);
 
+           // Validation         
+        if(password.length<6){
+            setError('Please Atlest 6 Chaacter input')
+        }
+        else{
+            setSuccess("You Successfuly login");
+            event.target.reset()
+           }
+
            creatUser(email, password)
            .then(result=>{
              const logedUser=result.user;
              console.log(logedUser);
-             from.reset()
              navigate("/")
-           })
+             //Email verifay    
+             if(!loginUser.emailverified){
+              setError(" Please Check  Your Email Verification ")   
+          }
+       // Sob Clear click on submit button   
+          event.target.reset();
+          //Email verifay   
+          sendVerificationEmail(result.user);
+           // User Info name
+           updateUserData(result.user, name )
+           navigate("/")
+      })             
            .catch(error=>{
               console.log(error);
            })
@@ -42,7 +71,22 @@ const Register = () => {
          })
     }   
       
- 
+    const updateUserData=(user, name)=>{
+      updateProfile(user,{
+          displayName:name
+      })
+      .then(()=>{
+          console.log("User name upded");
+      }) 
+      .catch(error =>{
+          setError(error.massage)
+      })
+}
+
+// Blur Password Show to console
+const handlePasswordBlur=(event)=>{
+  console.log(event.target.value);
+}
   return (
     <div>
         <div className="hero min-h-screen bg-base-200 lg:px-[100px]">
@@ -57,19 +101,19 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" name='name' placeholder="Your Name" className="input input-bordered" required />
+                                <input  onChange={handleEmailChange} type="text" name='name' placeholder="Your Name" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
                                 <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                                <input onChange={handleEmailChange} type="email" name='email' placeholder="email" className="input input-bordered" required />
                                     </div>
                                 <div className="form-control">
                                 <label className="label">
-                                <span className="label-text">Password</span>
+                                <span  className="label-text">Password</span>
                                 </label>
-                                <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                                <input onBlur={handlePasswordBlur} type="password" name='password' placeholder="password" className="input input-bordered" required />
                                 <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
