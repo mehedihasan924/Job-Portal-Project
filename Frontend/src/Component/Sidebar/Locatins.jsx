@@ -10,10 +10,10 @@ const Locatins = ({haldleChange}) => {
                 <input type="radio" name='test' id='text' value="" onChange={haldleChange}/>
                 <span className='checkmark'></span> All
             </label>
-            <InputField haldleChange={haldleChange} value="london" title="London" name="test" />
-            <InputField haldleChange={haldleChange} value="seattle" title="Seattle" name="test" />
-            <InputField haldleChange={haldleChange} value="madrid" title="Madrid" name="test" />
-            <InputField haldleChange={haldleChange} value="boston" title="Boston" name="test" />
+            <InputField haldleChange={haldleChange} value="Dhaka" title="Dhaka" name="test" />
+            <InputField haldleChange={haldleChange} value="Sylhet" title="Sylhet" name="test" />
+            <InputField haldleChange={haldleChange} value="Chattogram" title="Chattogram" name="test" />
+            <InputField haldleChange={haldleChange} value="Barishal" title="Barishal" name="test" />
             
         </div>
     </div>

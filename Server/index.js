@@ -35,9 +35,6 @@ async function run() {
      const db=client.db("marnjobportal")
      const jobsCollection=db.collection("demojobs");
 
-
-
-     
     // post a jobs 
     app.post("/post-job", async(req, res)=>{
       const body=req.body;
@@ -85,8 +82,25 @@ async function run() {
     res.send(result);
  })
 
-
-   
+// Aplayed job 
+app.get("/apply", async(req, res)=>{
+  const jobs=await jobsCollection.find({}).toArray()
+   res.send(jobs);
+})
+app.get("/apply/:id", async(req, res)=>{
+  const id=req.params.id;
+  const job= await jobsCollection.findOne({
+   _id:new ObjectId(id)
+  })
+  res.send(job);
+})
+   // apply delete a jobs
+   app.delete("/apply/:id", async(req, res)=>{
+    const id=req.params.id;
+    const filter={_id: new ObjectId(id)}
+    const result=await jobsCollection.deleteOne(filter);
+    res.send(result);
+ })  
 
 //Update Jobs
 app.patch("/update-job/:id", async(req, res)=>{
@@ -101,10 +115,6 @@ app.patch("/update-job/:id", async(req, res)=>{
   };
   const result= await jobsCollection.updateOne(filter, updateDoc, options);
 })
-
-
-
-
 
 
     // Send a ping to confirm a successful connection

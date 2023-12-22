@@ -2,38 +2,47 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Applyedjob = () => {
-    // const [jobs, setJobs]=useState([]);
-    // const [isloading, setIsleoading]=useState(true);
-    // useEffect(()=>{ 
-    //     setIsleoading(true);    
-    //     fetch(`http://localhost:3000/applyedjob/${id}`)
-    //     .then(res=>res.json())
-    //     .then((data)=>{
-    //       setJobs(data);
-    //       setIsleoading(false);      
-    //     });
-    // },[])
 
-    // const handlDelete=(id)=>{
-    //     console.log(id);
-    //     fetch(`http://localhost:3000/applyed/${id}`, {
-    //       method:"DELETE"
-    //     })
-    //     .then(res=>res.json())
-    //     .then(data=> {
-    //       if(data.acknowledged===true){
-    //         Swal.fire({
-    //           title: "Successfully deleted job!",
-    //           text: "You clicked the button!",
-    //           icon: "success"
-    //         });
-    //           reset()
-    //       }
-    //     });
-    //   }
+     const [jobs, setJobs]=useState([]); 
+    const [isloading, setIsleoading]=useState(true);
+
+    useEffect(()=>{
+        setIsleoading(true);
+        fetch(`http://localhost:3000/apply`)
+        .then(res=>res.json())
+        .then((data)=>{
+          setJobs(data);
+          setIsleoading(false);
+        });
+    },[])
+
+    const [currentPage,setCurrentPage]=useState(1);
+    const itemsPerpage=4;
+
+     const indexOfLastItem=currentPage*itemsPerpage;
+     const indexOfFirsttItem=indexOfLastItem- itemsPerpage;
+     const currentJobs=jobs.slice(indexOfFirsttItem, indexOfLastItem);
+
+     const handlDelete=(id)=>{
+      console.log(id);
+      fetch(`http://localhost:3000/apply/${id}`, {
+        method:"DELETE"
+      })
+      .then(res=>res.json())
+      .then(data=> {
+        if(data.acknowledged===true){
+          Swal.fire({
+            title: "Successfully deleted job!",
+            text: "You clicked the button!",
+            icon: "success"
+          });
+            reset()
+        }
+      });
+    }
     return (
         <div>
-         {/* <section className="py-3 bg-blueGray-50">
+         <section className="py-3 bg-blueGray-50">
           <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto ">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
               <div className="rounded-t mb-0 px-4 py-3 border-0">
@@ -48,7 +57,6 @@ const Applyedjob = () => {
                   </div>
                 </div>
               </div>
-
               <div className="block w-full overflow-x-auto">
                 <table className="items-center bg-transparent w-full border-collapse ">
                   <thead>
@@ -64,10 +72,7 @@ const Applyedjob = () => {
                                   </th>
                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                   Salary
-                                  </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                 Edit
-                                  </th>
+                                  </th>                   
                     <th className="px-6 bg-blueGray-50 text-blue-Gray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                   Delete                                
                                   </th>
@@ -93,21 +98,16 @@ const Applyedjob = () => {
                             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                             ${job.minPrice}-${job.maxPrice}
                             </td>
-                            <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">                    
-                            <Link to={`/edit-job/${job?._id}`}><button className='bg-green-500 rounded-sm py-2 px-8 text-white' >Edit  </button></Link>
-                            </td>
                             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                               <button onClick={()=>handlDelete(job._id)} className='bg-red-700 rounded-sm py-2 px-6 text-white'> Delete </button>
                               
                             </td>
                               </tr>
                             ))
-                          }
-                                           
+                          }                                   
                         </tbody>
                        )
                     }
-
                 </table>
               </div>
             </div>
@@ -123,7 +123,7 @@ const Applyedjob = () => {
               </div>
             </div>
           </footer>
-          </section> */}
+          </section>
         </div>
     );
 };

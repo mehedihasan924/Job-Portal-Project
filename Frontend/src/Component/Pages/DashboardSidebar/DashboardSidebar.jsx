@@ -22,13 +22,13 @@ const Sidebar = () => {
 
     <>
       <div className='Logo'>
-        <img style={{ width: "100%", height: '70px', borderRadius: '0px 10px 0px 10px' }} src={DashboardLogo} alt="" />
+       <Link to="/" ><img style={{ width: "100%", height: '70px', borderRadius: '0px 10px 0px 10px' }} src={DashboardLogo} alt="" /> </Link> 
       </div>
 
       <div className='menu mt-3 text-white ' >
         <div className='flex flex-col items-center justify-center text-center mx-auto font-medium bg-blue-600 w-full rounded py-2 mb-3'>
       
-        <span className='text-xl text-warning'> Admin</span>
+      
         </div>
         
         <h3 className='text-lg'>Menu</h3>

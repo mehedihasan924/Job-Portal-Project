@@ -31,7 +31,7 @@ const DashboardData = () => {
                 <div className=' p-5 bg-white'>
                   <div className='post-icon'> <FaPuzzlePiece /></div>
                   <h1 className='text-3xl font-bold '>All Admin </h1>
-                  <p className='text-lg font-bold '> Total :</p>
+                  <p className='text-lg font-bold text-red-600'> Mehedi Hasan</p>
                 </div>
               </div>  
               <div className=' grid lg:grid-cols-3  gap-5  p-5 mt-[20px]'>

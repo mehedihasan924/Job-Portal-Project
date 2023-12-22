@@ -11,9 +11,18 @@ const Jobdetails = () => {
     } )
   }, [])
 
-
   const [file, setFile] = useState(null)
-  
+
+
+  const [apply, setApply] = useState([]);
+  useEffect(()=>{
+    fetch("http://localhost:3000/apply")
+    .then(res=>res.json())
+    .then( data=> setApply(data))
+  },
+[])
+
+console.log(apply);
   const handleApply=async(jobs)=>{
     const { value: file } = await Swal.fire({
         title: "Select Your CV",
@@ -35,8 +44,25 @@ const Jobdetails = () => {
         reader.readAsDataURL(file);
         setFile(file)       
       }
-  
+
+      fetch(`http://localhost:3000/apply/${_id}`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(jobs)
+    })
+        .then(res => res.json())
+        .then((result) => {
+            console.log(result);
+            if (result.acknowledged === true) {
+              Swal.fire({
+                  title: "Successfully Posted job!",
+                  text: "You clicked the button!",
+                  icon: "success"
+              });
+          }       
+        }); 
   }
+
     return (
         <div className='max-w-screen-2xl container mx-auto xl:px-24 lg:px-[100px] px-[50px] '> 
             <h1 className='text-xl font-bold py-3'>Job Title:{jobs.jobTitle}</h1>     

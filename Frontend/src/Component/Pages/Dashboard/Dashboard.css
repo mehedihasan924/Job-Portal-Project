@@ -43,7 +43,9 @@
 
 
 /*  Sidebar css / */
-
+.active{
+  color: red;
+}
 
 .dropbtn {
   display: flex;
