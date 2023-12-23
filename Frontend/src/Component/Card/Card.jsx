@@ -19,7 +19,7 @@ export const Card = ({data}) => {
                     <span className='flex items-center gap-1'><FiDollarSign/> {minPrice}-{maxPrice}</span>
                     <span className='flex items-center gap-1'><FiCalendar/> {postingDate}</span>          
                 </div>
-                <p className='text-base text-gray-500'> {description}</p>
+                <p className='text-base text-gray-500'>   {description.length < 250 ? <>{description}  </> : <>{description.slice(0, 100)}...<Link to={`/job/${_id}`}>Read More </Link> </>}</p>  
             </div>
          </Link>
       </section>

@@ -79,23 +79,22 @@ const Creatjob = () => {
                     <div className='flex  flex-col lg:flex-row  items-center justify-between gap-8'>
                         <div className='lg:w-1/2 w-full '>
                             <label className=' block mb-2 text-lg'> Job Title</label>
-                            <input type="text" placeholder="Web Developer" {...register("jobTitle",)} className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 ' />
+                            <input type="text" placeholder="Web Developer" required {...register("jobTitle",)} className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 ' />
                         </div>
                         <div className='lg:w-1/2 w-full '>
                             <label className=' block mb-2 text-lg'> Company Name</label>
-                            <input type="text" placeholder="EX : Microsoft" {...register("companyName",)} className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 ' />
+                            <input type="text" placeholder="EX : Microsoft" required {...register("companyName",)} className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 ' />
                         </div>
                     </div>
-
                     {/* 2nd Row */}
                     <div className='flex  flex-col lg:flex-row  items-center justify-between gap-8'>
                         <div className='lg:w-1/2 w-full '>
                             <label className=' block mb-2 text-lg'> Minimum salary</label>
-                            <input type="text" placeholder="$20k" {...register("minPrice",)} className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6' />
+                            <input type="text" placeholder="$20k" required {...register("minPrice",)} className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6' />
                         </div>
                         <div className='lg:w-1/2 w-full '>
                             <label className=' block mb-2 text-lg'> Maximum Salary </label>
-                            <input type="text" placeholder="$150k" {...register("maxPrice",)} className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 ' />
+                            <input type="text" placeholder="$150k" required {...register("maxPrice",)} className='block  w-full  border-1 flex-1 bg-white py-1.5  pl-3 text-gray-900 placeholde:text-gray-400 focus:outline-none sm:textsm sm:leading-6 ' />
                         </div>
                     </div>
 
@@ -103,7 +102,7 @@ const Creatjob = () => {
                     <div className='flex  flex-col lg:flex-row  items-center justify-between gap-8'>
                         <div className='lg:w-1/2 w-full '>
                             <label className=' block mb-2 text-lg'>Salary Type </label>
-                            <select {...register("salaryType")} className='create-job-input'>
+                            <select required {...register("salaryType")} className='create-job-input'>
                                 <option value=""> Choose your salary </option>
                                 <option value="Hourly">Hourly</option>
                                 <option value="Monthly">Monthly</option>
@@ -135,6 +134,7 @@ const Creatjob = () => {
                     <div>
                         <label className=' block mb-2 text-lg'>Required Skill Sets: </label>
                         <CreatableSelect
+                         required
                             // defaultValue={selettedOption}            
                             onChange={setSelectedOption}
                             options={options}
@@ -151,7 +151,7 @@ const Creatjob = () => {
                         </div>
                         <div className='lg:w-1/2 w-full '>
                             <label className=' block mb-2 text-lg'>Employment Type </label>
-                            <select {...register("employmentType")} className='create-job-input'>
+                            <select required {...register("employmentType")} className='create-job-input'>
                                 <option value=""> Employment Type </option>
                                 <option value="Full-time">Full-time</option>
                                 <option value="Part-time">Part-time</option>
@@ -164,7 +164,8 @@ const Creatjob = () => {
                     <div className='w-full'>
                         <label className=' block mb-2 text-lg'>Job Description: </label>
                         <textarea
-                            //   defaultValue={"A book or other written or printed work, regarded in terms of its content rather than its physical form." } 
+                        required
+                              defaultValue={"A book or other written or printed work, regarded in terms of its content rather than its physical form." } 
                             className='w-full pl-3  focus:outline-none'
                             rows={6}
                             placeholder='Job Description'
